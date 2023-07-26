@@ -1,0 +1,34 @@
+# The Freiburg Food Groceries Image Detection & Classification - AI and Deep Learning Models
+My project is on classifying grocery images using the Freiburg groceries dataset. The objective of this research is to examine the characteristics that make convolutional neural networks effective in image classification particularly in the retail sector, by assisting stores in various industries in identifying objects, tracking customers, and enhancing monitoring of both interior and outdoor situations. This research was inspired by the popular Amazon Go superstore. The store operates using an Amazon Go application utilizing computer vision, sensor fusion, and deep learning.
+The Freiburg Groceries dataset contains 5,000, images where each image size is 256 x 256 pixels, and comprises 25 distinct classes of groceries,
+
+![image](https://github.com/dspatel19/Computer-Vision-The-Freiburg-Groceries-Detector-AI-DeepLearning/assets/23547107/a02045f8-336e-43df-b705-53bf4ee6b26d) ![image](https://github.com/dspatel19/Computer-Vision-The-Freiburg-Groceries-Detector-AI-DeepLearning/assets/23547107/dff2a47c-f12c-4eef-9c82-336411e056e1)
+
+with at least 97 images per class shown in the bar plot and pie chart. Candy, chocolate, juice, coffee, and tea are the top 5 categories with the highest number of images in the Freiburg grocery dataset out of the 25 distinct classes. We narrowed the image size down to 85 x 85 pixels during the data ingestion and transformation process for faster model processing time. We built 2D CNN model which is often used for image data with 3-dimensional input and output like the Freiburg grocery dataset.
+![image](https://github.com/dspatel19/Computer-Vision-The-Freiburg-Groceries-Detector-AI-DeepLearning/assets/23547107/d8cd87e2-36c7-4ef0-93d4-647751c78603)
+
+The figure above contains examples of images from our dataset. Each image displays single or many instances of things with labels showing some of the 25 categories of food products.
+
+## CNN and AlexNet Model Experiments Results
+![image](https://github.com/dspatel19/Computer-Vision-The-Freiburg-Groceries-Detector-AI-DeepLearning/assets/23547107/ee3731cf-f1f2-4502-b4c0-a38be97b27dd)
+
+We conducted 11 experiments as shown in the figure above. In the first two experiments, we did not use regularization for 2D CNN models with 3 convolutional and max pooling layers that were running with a batch size of 50 for variation in iteration from 20 epochs for all experiments. For experiments 3 to 5, we used regularization such as L2 Regularizes, Dropout, Early Stopping, and Batch Normalization. Furthermore, experimentation from 6 to 9 involved tweaking hypermeters such as L1 Regularizes, Dropout rate, and increasing hidden to see if that helps in improving the accuracy of the model in the right direction. Finally, in experiments 10 and 11 we built an AlexNet model based on the researcher's baseline architecture with five convolution layers and three completely fully connected layers. However, there were concerns about not fully understanding this architecture from modeler side as we did not get much information about this architecture from the researchers. But the test accuracy of the Alex Net model was surprising, based on the expectation of the result compared to the 2D CNN model with three convolution layers. 
+
+The L2 Regularizes CNN models with 3 convolutional layers (experiments 3-5) performed better than the L1 Regularizes models (experiments 6-9) based on the results. The difference between L1 and L2 regularize is that the weights will not be sparse and L2 will obtain significantly more accurate results than with L1.
+
+The optimal model was the Experiment 5 CNN model which consists of 3 convolution layers 128, 256, and 256 nodes that have dense layers of 512 nodes following L2 regularize on a dense layer only, 20 % dropout, batch normalization, and early stopping regularization techniques were used in the process of preventing model overfitting. The image classification resulted in test data of 41.34% which is only slightly higher but much better optimization-wise compared to other experiments. The following experiment led to a slower training time of 60 seconds because of 9.2 million trainable parameters compared to other models. The complexity of the model is high and overfitting. 
+
+## Experiment 5 CNN Architecture (Best Prediction Model):
+![image](https://github.com/dspatel19/Computer-Vision-The-Freiburg-Groceries-Detector-AI-DeepLearning/assets/23547107/90d7b3cd-a515-47cc-b524-bf51ecfa4636)
+
+But researchers getting optimal accuracy of around 78% on this dataset, and our models reaching test accuracy of around 41% with 3 convolutional layers is a decent start to conduct several more experiments in the future on this dataset.
+
+![image](https://github.com/dspatel19/Computer-Vision-The-Freiburg-Groceries-Detector-AI-DeepLearning/assets/23547107/0d7704c5-5cfe-4099-8ef5-da49bf478652)
+
+We display the scatterplot shown above using t-Distributed Stochastic Neighbor Embedding (t-SNE), an additional approach for dimensionality reduction that is particularly suitable for high-dimensional datasets. Using this strategy, we decreased the number of hidden activation feature nodes in Experiment 5 using just the most significant input characteristics for training. The accuracy of our best-recommended model from Experiment 5 is 41.34% which is depicted in the scatter plot through the Stochastic Neighbor Embedding technique with 25 clusters shown above that are overlapping the models need performance improvement. There is a lot of overlap, most of them not clearly segmenting into classes with overlapping color codes of clusters this helps us in evaluating the model performance and accuracy. 
+
+In the future, I hope to re-architect the following convolutional neural network that is shown above as well as understand the researchers' baseline architecture of using CaffeNet neural networks that consists of 5 convolutional layers, and 2 fully connected layers with a more optimized approach of having fewer hidden nodes, which would reduce training time, model complexity, and trainable parameters. By evaluating the convolutional layer further by tweaking hypermeters and experimenting with various regularization techniques to gather further knowledge on having decent accuracy compared to our current optimal model is at 41% accuracy. In addition, one of the primary causes of having such a low accuracy is because lack of training data for predicting 25 distinct grocery is really tough for the CNN models, largely due to the grocery item recognition remaining unrealized as it requires a lot of improvements gathering such image data.
+
+References:
+
+Jund, P., Abdo, N., Eitel, A., & Burgard, W. (2016). The Freiburg Groceries Dataset. University of Freiburg, Autonomous Intelligent Systems. Retrieved from http://ais.informatik.uni-freiburg.de/publications/papers/jund16groceries.pdf.
